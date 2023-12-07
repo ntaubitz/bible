@@ -5,6 +5,6 @@ FactoryBot.define do
     book { 'genesis' }
     chapter { 1 }
     verse { 1 }
-    raw_text { 'In the beginning' }
+    raw_text { 'In the beginning God created the heaven and the earth.' }
   end
 end
