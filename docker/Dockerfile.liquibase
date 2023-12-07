@@ -1,0 +1,4 @@
+FROM liquibase/liquibase
+
+COPY ./docker/liquibase_update.sh docker/
+COPY ./migrations migrations/

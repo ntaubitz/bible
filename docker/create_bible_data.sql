@@ -1,0 +1,1 @@
+CREATE DATABASE bible_data;

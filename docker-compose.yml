@@ -1,0 +1,37 @@
+# docker-compose.yml
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./app:/app
+      - ./spec:/spec
+    depends_on:
+      - data
+    env_file:
+      - .env
+  data:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: dbpassw0rd
+    ports:
+      - 5432:5432
+    volumes:
+      - bible_data:/var/lib/postgresql/data
+  migrations:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.liquibase
+    entrypoint: docker/liquibase_update.sh
+    env_file:
+      - .env
+    depends_on:
+      - data
+volumes:
+  bible_data:
+    external: true

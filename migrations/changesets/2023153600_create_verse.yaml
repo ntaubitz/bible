@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-verses-table
+      author: ntaubitz@gmail.com
+      preConditions:
+        - not:
+            tableExists:
+              tableName: verses
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: verses_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: book
+                  type: VARCHAR(32)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: chapter
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: verse
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: raw_text
+                  type: VARCHAR(32000)
+            tableName: verses
